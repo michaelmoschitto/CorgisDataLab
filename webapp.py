@@ -10,7 +10,9 @@ def render_main():
 
 @app.route("/DataByName")
 def render_DataByName():
-    return render_template('DataByName.html')
+    with open('static/medal_of_honor.json') as medal_data:
+        medalList = json.load(medal_data)
+    return render_template('DataByName.html', response_options="Jerry")
 
 
 
