@@ -9,7 +9,7 @@ def render_main():
     return render_template('home.html')
 
 @app.route("/DataByName")
-def render_main
+def render_DataByName():
     return render_template('DataByName.html')
 
 
