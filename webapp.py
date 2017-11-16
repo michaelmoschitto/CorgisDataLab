@@ -12,7 +12,7 @@ def render_main():
 def render_DataByName():
     with open('static/medal_of_honor.json') as medal_data:
         medalList = json.load(medal_data)
-    return render_template('DataByName.html', response_options="Jerry")
+    return render_template('DataByName.html', response_options=Markup(<option value=\"" Jerry + "\">" + JerryName + "</option>")")
 
 
 
