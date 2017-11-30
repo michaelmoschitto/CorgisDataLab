@@ -29,14 +29,16 @@
     </nav>
 
     <h1> Data By Name </h1>
-    <form action=".">
+    <form action="/DataByName">
         <select name="Name">
         {{ response_options }}
       </select>
         <br><br>
         <input type="submit">
     </form>
-
+    {% if recipiantName and citation is defined %}
+        <p> On {{ date }}, {{ recipiantName }} won the Medal of Honor. Their act of valor: {{ citation }}. The act was at {{ location }}, latitude: {{ latitude }}, longitude: {{ longitude }}. <p>
+    {% endif %}
 </body>
 
 </html>
