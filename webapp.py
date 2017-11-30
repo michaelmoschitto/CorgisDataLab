@@ -37,7 +37,7 @@ def render_DataByName():
         medalList = json.load(medal_data)
     if 'Name' in request.args:
         recipiantName = request.args["Name"]
-        return render_template('DataByName.html', response_options= getData(medalList), citation= getCitation(medalList,recipiantName), recipiantName = recipiantName,longitude=getLongitude(medalList,recipiantName), latitude=getLatitude(medalList,recipiantName), date= getDate(medalList,recipiantName), location=getLocation(medalList,recpiantName))
+        return render_template('DataByName.html', response_options= getData(medalList), citation= getCitation(medalList,recipiantName), recipiantName = recipiantName,longitude=getLongitude(medalList,recipiantName), latitude=getLatitude(medalList,recipiantName), date= getDate(medalList,recipiantName), location=getLocation(medalList,recipiantName))
 
         # return render_template('DataByName.html')
     return render_template('DataByName.html', response_options=getData(medalList))
@@ -82,21 +82,21 @@ def getLatitude(medalList,recipiantName):
 
 def getDate(medalList,recipiantName):
 
-    date=""
+    date="6"
 
     for n in medalList:
         if n["name"] == recipiantName:
-            date= n["date"]["full"]
+            date= n["awarded"]["date"]["full"]
     return date
 
 def getLocation(medalList,recipiantName):
 
-    location=""
+    location="here"
 
     for n in medalList:
         if n["name"] == recipiantName:
-            location= n["location"]["name"]
-    return date
+            location= n["awarded"]["location"]["name"]
+    return location
 
 
 
