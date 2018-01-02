@@ -42,6 +42,10 @@ def render_DataByName():
         # return render_template('DataByName.html')
     return render_template('DataByName.html', response_options=getData(medalList))
 
+@app.route("/graphPage")
+def render_graphPage():
+    return render_template('graphPage.html')
+
 
 def getData(medalList):
     names = []
