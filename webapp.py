@@ -46,6 +46,14 @@ def render_DataByName():
 def render_graphPage():
     return render_template('graphPage.html')
 
+@app.route("/BarGraph")
+def render_BarGraph():
+    with open('static/medal_of_honor.json') as medal_data:
+        medalList = json.load(medal_data)
+    # print(getPoints(medalList))
+
+    return render_template('barGraph.html', dataPoints=getPoints(medalList))
+
 
 def getData(medalList):
     names = []
@@ -101,6 +109,29 @@ def getLocation(medalList,recipiantName):
         if n["name"] == recipiantName:
             location= n["awarded"]["location"]["name"]
     return location
+
+
+# { y: 419, label: "chicago"},
+
+def getPoints(medalList):
+    pointdict = getPointArray(medalList)
+    points = "[ "
+
+    for key,value in pointdict.items():
+        points +=  Markup("\n" + "{ y: " + str(value) + ", label: " + '"' + str(key) + '"' " },")
+    points = points[:-1]
+    points += "\n"+" ]"
+    print(points)
+    return points
+
+def getPointArray(medalList):
+    d = {}
+    for n in medalList:
+        if n["awarded"]["date"]["year"] in d:
+            d[n["awarded"]["date"]["year"]] += 1
+        else:
+            d[n["awarded"]["date"]["year"]] = 1
+    return d
 
 
 
